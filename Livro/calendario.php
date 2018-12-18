@@ -1,29 +1,33 @@
 <?php 
 	function linha($semana) {
-		echo "
-			<tr>
-				<td>{$semana[0]}</td>
-				<td>{$semana[1]}</td>
-				<td>{$semana[2]}</td>
-				<td>{$semana[3]}</td>
-				<td>{$semana[4]}</td>
-				<td>{$semana[5]}</td>
-				<td>{$semana[6]}</td>
-			</tr>
-		";
+		echo '<tr>';
+
+			for ($i = 0; $i <= 6; $i++){
+				if (isset($semana[$i])){
+					echo "<td>{$semana[$i]}</td>";
+				} else {
+					echo "<td></td>";
+				}
+			}
+
+		echo '<tr>';
+		return $linha;
 	}
+
 	function calendario(){
 		$dia = 1;
-		$semana = array();
+		$semana = [];
 		while ($dia <= 31) {
 			array_push($semana, $dia);
 
 			if (count($semana) == 7) {
 				linha($semana);
-				$semana = array();
+				$semana = [];
 			}
 			$dia++;
 		}
+
+		linha($semana);
 	}
 ?>
 
